@@ -1,0 +1,64 @@
+.item:first-child {
+    border-top: none;
+}
+
+.item .row {
+    padding: 3px;
+}
+
+.item-content,
+.item-complex .item-content {
+    padding: 5px;
+}
+
+.row + .row {
+    margin-top: 5px;
+}
+
+.task-title {
+    font-size: 20px;
+}
+
+.icon {
+    margin-right: 5px;
+}
+
+.task-status-row {
+    justify-content: flex-end;
+}
+
+.task-status-icon {
+    font-size: 35px;
+}
+
+.task-status-in-progress-spinner {
+    margin-right: 6px;
+}
+
+.task-status-in-progress-spinner > svg {
+    width: 30px;
+    height: 30px;
+}
+
+/* *************************************** */
+.has-error {
+    border-bottom: 2px solid #F44336;
+}
+
+.error-container {
+    margin: 5px 0;
+}
+
+.error-container:last-child {
+    margin: 5px 0;
+}
+
+.error {
+    padding: 5px 12px;
+}
+
+.error i {
+    font-size: 24px;
+    color: #F44336;
+    vertical-align: middle;
+}

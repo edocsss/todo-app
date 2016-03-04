@@ -1,0 +1,72 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">
+            Add New Task
+        </h1>
+        <div class="buttons">
+            <button class="button button-positive" ng-click="hideNewTaskModal()">
+                Cancel
+            </button>
+        </div>
+    </ion-header-bar>
+
+    <ion-content>
+        <form name="addNewTaskForm" novalidate>
+            <div class="list">
+                <label class="item item-input" ng-class="{ 'has-error': addNewTaskForm.title.$invalid && !addNewTaskForm.title.$pristine }">
+                    <input type="text" name="title" placeholder="Task Title" ng-model="newTask.title" required/>
+                </label>
+
+                <div class="error-container" ng-show="addNewTaskForm.title.$invalid && !addNewTaskForm.title.$pristine" ng-messages="addNewTaskForm.title.$error">
+                    <div class="row row-center error">
+                        <i class="icon ion-information-circled"></i>
+                        Please enter the task title!
+                    </div>
+                </div>
+
+                <label class="item item-input">
+                    <div class="row row-center">
+                        <div class="col col-50">
+                            <button class="button button-calm" ion-datetime-picker date monday-first ng-model="newTask.date">
+                                <i class="icon ion-calendar"></i>
+                                Select Date
+                            </button>
+                        </div>
+
+                        <div class="col col-50">
+                            <h3>{{ newTask.date | date: "d MMMM y" }}</h3>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="item item-input">
+                    <div class="row row-center">
+                        <div class="col col-50">
+                            <button class="button button-calm" ion-datetime-picker time ng-model="newTask.time">
+                                <i class="icon ion-clock"></i>
+                                Select Time
+                            </button>
+                        </div>
+
+                        <div class="col col-50">
+                            <h3>{{ newTask.time | date: "H:mm" }}</h3>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="item item-input">
+                    <textarea row="10" placeholder="Task Description" ng-model="newTask.description"></textarea>
+                </label>
+            </div>
+
+            <div class="row">
+                <div class="col col-100 padding text-center">
+                    <button type="button" class="button button-positive" ng-disabled="addNewTaskForm.$invalid || !newTask.date || !newTask.time" ng-click="addNewTask(); addNewTaskForm.$setPristine();">
+                        <i class="icon ion-edit"></i>
+                        Create New Task
+                    </button>
+                </div>
+            </div>
+        </form>
+    </ion-content>
+</ion-modal-view>

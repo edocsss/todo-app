@@ -1,0 +1,60 @@
+<ion-view view-title="To-Do List">
+    <ion-nav-buttons side="secondary">
+        <button class="padding button button-clear add-new-task-button" ng-click="showNewTaskModal()">
+            <i class="icon ion-plus-round"></i>
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content>
+        <ion-list class="has-header">
+            <ion-item ng-repeat="(taskId, taskItem) in todoList" ng-click="openTaskDetails()">
+                <ion-option-button class="button-balanced" ng-click="setTaskStatus(CONSTANTS.TASK.STATUS.COMPLETED)">
+                    Done
+                </ion-option-button>
+
+                <ion-option-button class="button-positive" ng-click="setTaskStatus(CONSTANTS.TASK.STATUS.IN_PROGRESS)">
+                    Progress
+                </ion-option-button>
+
+                <ion-option-button class="button-assertive" ng-click="deleteTask()">
+                    Delete
+                </ion-option-button>
+
+                <div class="row row-center">
+                    <div class="col col-75">
+                        <div class="row">
+                            <div class="col-100">
+                                <h2 class="task-title" ng-cloak>
+                                    <b>{{ taskItem.title }}</b>
+                                </h2>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-67">
+                                <h3 ng-cloak>
+                                    <span class="icon ion-calendar"></span>
+                                    {{ taskItem.date | date: "d MMMM y"}}
+                                </h3>
+                            </div>
+
+                            <div class="col-33">
+                                <h3 ng-cloak>
+                                    <span class="icon ion-clock"></span>
+                                    {{ taskItem.time | date: "H:mm" }}
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col col-25">
+                        <div class="row task-status-row">
+                            <i class="icon task-status-icon" ng-show="taskItem.status !== CONSTANTS.TASK.STATUS.IN_PROGRESS" ng-class="getTaskStatusIcon()"></i>
+                            <ion-spinner class="task-status-in-progress-spinner" ng-show="taskItem.status === CONSTANTS.TASK.STATUS.IN_PROGRESS" icon="spiral"></ion-spinner>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
